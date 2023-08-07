@@ -1,9 +1,10 @@
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import { SelectedPage } from "@/shared/types";
 
 type Props={
     page: string
-    selectedPage: string
-    setSelectedPage: (value: string) => void;
+    selectedPage: SelectedPage
+    setSelectedPage: (value: SelectedPage) => void;
 }
 
 const Link = ({
@@ -13,7 +14,8 @@ const Link = ({
 }: Props) => {
     // Links must be in lowercase.
     // If a page's name includes space, this regex deletes it.
-    const lowerCasePage = page.toLowerCase().replace(/ /g, "")
+    const lowerCasePage = page.toLowerCase().replace(/ /g, "") as SelectedPage;
+    // TS does not know we converted page, so we use 'as'
 
     return (
         <AnchorLink
